@@ -1,3 +1,6 @@
+#include "color.h"
+#include "vec3.h"
+
 #include <iostream>
 
 int main()
@@ -18,11 +21,8 @@ int main()
         std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
         for (int i = 0; i < image_width; i++) // Columns -> left to right
         {
-            int r = i; // Red channel is increase to the right
-            int g = j; // Green channel is decreasing to the bottom
-            int b = (i+j)/2; // Blue channel averages Red and Green channel in each pixel
-
-            std::cout << r << ' ' << g << ' ' << b << '\n'; // -> Pixel output
+            color pixel_color(double(i) / (image_width-1), double(j) / (image_height-1), double(i+j)/(image_height + image_width -2));
+            write_color(std::cout, pixel_color);
         }
     }
 
