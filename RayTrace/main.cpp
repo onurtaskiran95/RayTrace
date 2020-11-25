@@ -15,6 +15,7 @@ int main()
     // Image data
     for (int j = image_height -1; j >= 0; j--) // Columns -> top to bottom
     {
+        std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
         for (int i = 0; i < image_width; i++) // Columns -> left to right
         {
             int r = i; // Red channel is increase to the right
@@ -24,4 +25,6 @@ int main()
             std::cout << r << ' ' << g << ' ' << b << '\n'; // -> Pixel output
         }
     }
+
+    std::cerr << "\nDone..\n";
 }
