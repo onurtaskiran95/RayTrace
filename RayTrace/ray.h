@@ -1,28 +1,21 @@
-#ifndef RAY_H
-#define RAY_H
-
+#pragma once
 #include "vec3.h"
 
-class ray
+struct ray
 {
-public:
-    ray() {}
-    ray(const point3& origin, const vec3& direction)
-        : orig(origin), dir(direction)
-    {
-    }
+	vec3 _origin;
+	vec3 _direction;
 
-    point3 origin() const { return orig; }
-    vec3 direction() const { return dir; }
+	ray () {}
 
-    point3 at(double t) const
-    {
-        return orig + t * dir;
-    }
+	ray(vec3& origin, vec3& direction) 
+		: _origin(origin), _direction(direction) { }
 
-public:
-    point3 orig;
-    vec3 dir;
+	vec3 origin() const { return _origin; }
+	vec3 direction() const { return _direction; }
+
+	vec3 at(double t) const
+	{
+		return _origin + t * _direction;
+	}
 };
-
-#endif
