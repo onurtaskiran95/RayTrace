@@ -3,9 +3,9 @@
 #include <iostream>
 
 
-void set_pixel(std::ostream& out, vec3 pixel_color)
+void set_pixel(vec3 pixel_color)
 {
-    out << (int)(255.999 * pixel_color.x()) << ' '
+    std::cout << (int)(255.999 * pixel_color.x()) << ' '
         << (int)(255.999 * pixel_color.y()) << ' '
         << (int)(255.999 * pixel_color.z()) << '\n';
 }
@@ -13,8 +13,8 @@ void set_pixel(std::ostream& out, vec3 pixel_color)
 int main()
 {
     // Image Resolution
-    const int image_width = 512;
-    const int image_height = 512;
+    const int image_width = 1920;
+    const int image_height = 1080;
 
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
 
@@ -25,7 +25,7 @@ int main()
         for (int i = 0; i < image_width; i++) // Columns -> left to right
         {
             vec3 pixel_color(double(i) / (image_width - 1), double(j) / (image_height - 1), double(i + j) / (image_height + image_width - 2));
-            set_pixel(std::cout, pixel_color);
+            set_pixel(pixel_color);
         }
     }
 
