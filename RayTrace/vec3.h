@@ -15,8 +15,3 @@ struct vec3
 	double z() const { return v[2]; };
 
 };
-
-
-
-
-
