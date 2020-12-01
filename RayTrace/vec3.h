@@ -18,6 +18,11 @@ struct vec3
 
 };
 
+std::ostream& operator<<(std::ostream& out, const vec3& v)
+{
+	return out << v.v[0] << ' ' << v.v[1] << ' ' << v.v[2];
+}
+
 vec3 operator+(const vec3& v1, const vec3& v2)
 {
 	return vec3(v1.v[0] + v2.v[0], v1.v[1] + v2.v[1], v1.v[2] + v2.v[2]);
@@ -43,9 +48,13 @@ vec3 operator*(const vec3& v1, const vec3& v2)
 	return vec3(v1.v[0] * v2.v[0], v1.v[1] * v2.v[1], v1.v[2] * v2.v[2]);
 }
 
-vec3 operator*(const vec3& v1, double& t)
+vec3 operator*(double& t, const vec3& v1)
 {
 	return vec3(v1.v[0] * t, v1.v[1] * t, v1.v[2] * t);
 }
 
+vec3 operator*(const vec3& v1, double& t)
+{
+	return vec3(t * v1);
+}
 
