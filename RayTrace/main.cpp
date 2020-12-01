@@ -13,8 +13,8 @@ void set_pixel(vec3 pixel_color)
 int main()
 {
     // Image Resolution
-    const int image_width = 1920;
-    const int image_height = 1080;
+    const int image_width = 1280;
+    const int image_height = 720;
 
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
 
