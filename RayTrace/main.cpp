@@ -12,9 +12,17 @@ void set_pixel(vec3 pixel_color)
 
 int main()
 {
-    // Image Resolution
+    // Image
+    const double aspect_ration = 16 / 9;
     const int image_width = 1280;
     const int image_height = 720;
+
+    // Camera
+
+    vec3 origin = vec3(0, 0, 0);
+    double viewport_height = 9;
+    double viewport_width = 16;
+    double focal_lenght = 1;
 
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
 
