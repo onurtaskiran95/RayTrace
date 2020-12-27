@@ -7,7 +7,7 @@ color RayColor(const ray& r)
 {
     vec3 unit_direction = UnitVector(r.direction());
     double t = 0.5 * (unit_direction.y() + 1);
-    return (1 - t) * color(1, 1, 1) + t * color(0, 0, 1);
+    return (1 - t) * color(1, 1, 1) + t * color(0.5, 0.7, 1);
 }
 
 int main()
@@ -17,12 +17,18 @@ int main()
     const int image_width = 1280;
     const int image_height = 720;
 
+    // Viewport
+
+    double viewport_height = 9;
+    double viewport_width = 16;
+    double focal_length = 1;
+
     // Camera
 
     vec3 origin = vec3(0, 0, 0);
-    double viewport_height = 9;
-    double viewport_width = 16;
-    double focal_lenght = 1;
+    vec3 horizontal = vec3(viewport_width, 0, 0);
+    vec3 vertical = vec3(0, viewport_height, 0);
+    vec3 refPoint = origin - horizontal/2 - vertical/2 - vec3(0, 0, focal_length);
 
     //Header
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
@@ -33,8 +39,12 @@ int main()
         std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
         for (int i = 0; i < image_width; i++) // Columns -> left to right
         {
-            vec3 pixel_color(double(i) / (image_width - 1), double(j) / (image_height - 1), double(i + j) / (image_height + image_width - 2));
-            SetPixelColor(pixel_color);
+            double u = double(i) / (image_width - 1);
+            double v = double(j) / (image_height - 1);
+
+            ray r(origin, refPoint + u * horizontal + v * vertical);
+
+            SetPixelColor(RayColor(r));
         }
     }
 
@@ -42,3 +52,5 @@ int main()
 
     std::cin.get();
 }
+
+
