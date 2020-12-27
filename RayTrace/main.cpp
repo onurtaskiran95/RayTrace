@@ -13,14 +13,14 @@ color RayColor(const ray& r)
 int main()
 {
     // Image
-    const double aspect_ration = 16 / 9;
-    const int image_width = 1280;
-    const int image_height = 720;
+    const double aspect_ratio = 16.0 / 9.0;
+    const int image_width = 480;
+    const int image_height = static_cast<int>(image_width / aspect_ratio);
 
     // Viewport
 
-    double viewport_height = 9;
-    double viewport_width = 16;
+    double viewport_width = 2;
+    double viewport_height = static_cast<int>(viewport_width / aspect_ratio);
     double focal_length = 1;
 
     // Camera
@@ -52,5 +52,3 @@ int main()
 
     std::cin.get();
 }
-
-
