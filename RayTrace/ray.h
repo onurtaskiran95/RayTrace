@@ -8,7 +8,7 @@ struct ray
 
 	ray () {}
 
-	ray(vec3& origin, vec3& direction) 
+	ray(const vec3& origin,const vec3& direction) 
 		: _origin(origin), _direction(direction) { }
 
 	vec3 origin() const { return _origin; }
