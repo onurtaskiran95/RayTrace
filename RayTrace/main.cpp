@@ -1,14 +1,12 @@
 #include "vec3.h"
-
+#include "color.h"
+#include "ray.h"
 #include <iostream>
 
-
-void set_pixel(vec3 pixel_color)
-{
-    std::cout << (int)(255.999 * pixel_color.x()) << ' '
-        << (int)(255.999 * pixel_color.y()) << ' '
-        << (int)(255.999 * pixel_color.z()) << '\n';
-}
+//color RayColor(const ray& r)
+//{
+//    vec3 unit_direction = unit_vector(r.direction());
+//}
 
 int main()
 {
@@ -24,6 +22,7 @@ int main()
     double viewport_width = 16;
     double focal_lenght = 1;
 
+    //Header
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
 
     // Rendering Image Data
@@ -33,7 +32,7 @@ int main()
         for (int i = 0; i < image_width; i++) // Columns -> left to right
         {
             vec3 pixel_color(double(i) / (image_width - 1), double(j) / (image_height - 1), double(i + j) / (image_height + image_width - 2));
-            set_pixel(pixel_color);
+            SetPixelColor(pixel_color);
         }
     }
 
