@@ -3,10 +3,12 @@
 #include "ray.h"
 #include <iostream>
 
-//color RayColor(const ray& r)
-//{
-//    vec3 unit_direction = unit_vector(r.direction());
-//}
+color RayColor(const ray& r)
+{
+    vec3 unit_direction = UnitVector(r.direction());
+    double t = 0.5 * (unit_direction.y() + 1);
+    return (1 - t) * color(1, 1, 1) + t * color(0, 0, 1);
+}
 
 int main()
 {
